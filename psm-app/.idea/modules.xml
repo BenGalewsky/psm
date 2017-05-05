@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cms-business-model/src/main/cms-business-model.iml" filepath="$PROJECT_DIR$/cms-business-model/src/main/cms-business-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cms-business-process/src/main/cms-business-process.iml" filepath="$PROJECT_DIR$/cms-business-process/src/main/cms-business-process.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cms-web/src/main/cms-web.iml" filepath="$PROJECT_DIR$/cms-web/src/main/cms-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data_load/mmis_load_utility/mmis_load_utility.iml" filepath="$PROJECT_DIR$/data_load/mmis_load_utility/mmis_load_utility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cms-web/WebContent/js/jwysiwyg/plugins/plugins.iml" filepath="$PROJECT_DIR$/cms-web/WebContent/js/jwysiwyg/plugins/plugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/src/main/services.iml" filepath="$PROJECT_DIR$/services/src/main/services.iml" />
+    </modules>
+  </component>
+</project>

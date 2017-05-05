@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-ooxml-schemas-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/stax-api-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/commons-logging-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-excelant-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/xmlbeans-2.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-ooxml-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-scratchpad-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/poi-examples-3.9-20121203.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data_load/mmis_load_utility/lib/commons-codec-1.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
