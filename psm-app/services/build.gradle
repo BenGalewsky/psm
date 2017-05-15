@@ -1,0 +1,18 @@
+plugins {
+  id 'base'
+  id 'java'
+}
+
+repositories {
+  flatDir {
+    dirs '../cms-portal-services/lib/'
+  }
+  mavenCentral()
+}
+
+dependencies {
+  compile 'javax:javaee-api:7.0'
+  compile 'commons-codec:commons-codec:1.6'
+  compile 'org.apache.velocity:velocity:1.7'
+  compile name: 'base_exception'
+}

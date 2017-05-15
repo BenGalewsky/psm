@@ -1,0 +1,2 @@
+include 'psm-app'
+include 'psm-app:services'
