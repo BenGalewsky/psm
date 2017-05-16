@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -16,7 +16,9 @@
 package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -25,11 +27,16 @@ import java.io.Serializable;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
 public class CMSUser implements Serializable {
 
     /**
      * The user identifier (generated).
      */
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "user_id")
     private String userId;
 
     /**
@@ -91,23 +98,23 @@ public class CMSUser implements Serializable {
      * The user role.
      */
     private Role role;
-    
+
     /**
      * Employer or Self.
      * If employer, it should have a proxyForUserId
      */
     private RoleView externalRoleView;
-    
+
     /**
      * The NPI that is being proxied, will only have a value if
      */
     private String proxyForNPI;
-    
+
     /**
      * The external account information.
      */
     private ExternalAccountLink externalAccountLink;
-    
+
     /**
      * Empty constructor.
      */

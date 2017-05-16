@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.HelpService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.LogUtil;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 
 import javax.ejb.Local;
@@ -75,7 +74,6 @@ public class HelpServiceBean extends BaseService implements HelpService {
         }
 
         try {
-            help.setId(getSequence().getNextValue(Sequences.HELP_ITEM_SEQ));
             getEm().persist(help);
             return LogUtil.traceExit(getLog(), signature, help.getId());
         } catch (PersistenceException e) {

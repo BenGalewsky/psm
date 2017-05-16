@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import gov.medicaid.services.AgreementDocumentService;
 import gov.medicaid.services.EntityNotFoundException;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.util.LogUtil;
-import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
 
 import java.util.Date;
@@ -83,7 +82,6 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
                 throw new IllegalArgumentException("Argument 'agreementDocument' cannot be null.");
             }
 
-            agreementDocument.setId(getSequence().getNextValue(Sequences.AGREEMENT_DOC_SEQ));
             agreementDocument.setCreatedOn(new Date());
             getEm().persist(agreementDocument);
 
@@ -116,13 +114,13 @@ public class HibernateAgreementDocumentBean extends BaseService implements Agree
 
         try {
             AgreementDocument entity = getEm().find(AgreementDocument.class, agreementDocument.getId());
-            
+
             if (entity == null) {
                 throw new EntityNotFoundException("No such entity in the database.");
             }
             agreementDocument.setVersion(agreementDocument.getVersion() + 1);
             getEm().merge(agreementDocument);
-            
+
             GlobalLookups.refresh();
             LogUtil.traceExit(getLog(), signature, null);
         } catch (PersistenceException e) {

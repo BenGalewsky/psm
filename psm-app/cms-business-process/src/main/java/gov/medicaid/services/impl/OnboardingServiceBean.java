@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ import gov.medicaid.services.OnboardingService;
 import gov.medicaid.services.PartnerSystemService;
 import gov.medicaid.services.PortalServiceException;
 import gov.medicaid.services.ProviderEnrollmentService;
-import gov.medicaid.services.util.Sequences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +137,6 @@ public class OnboardingServiceBean extends BaseService implements OnboardingServ
                         providerProfile);
 
                     ExternalProfileLink profileLink = new ExternalProfileLink();
-                    profileLink.setId(getSequence().getNextValue(Sequences.EXT_PROF_LINK_SEQ));
                     profileLink.setProfileId(internalProfileId);
                     profileLink.setExternalProfileId("" + providerProfile.getProfileId());
                     profileLink.setSystemId(link.getSystemId());

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -23,11 +26,14 @@ import java.io.Serializable;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@Entity
 public abstract class IdentifiableEntity implements Serializable {
 
     /**
      * The entity identifier.
      */
+    @Id
+    @GeneratedValue
     private long id;
 
     /**
@@ -43,14 +49,5 @@ public abstract class IdentifiableEntity implements Serializable {
      */
     public long getId() {
         return id;
-    }
-
-    /**
-     * Sets the value of the field <code>id</code>.
-     *
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
     }
 }

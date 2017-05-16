@@ -972,7 +972,6 @@
 	<class name="gov.medicaid.entities.CMSUser" table="CMS_USER">
 		<id name="userId" type="string">
 			<column name="USER_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="username"
 			type="string">

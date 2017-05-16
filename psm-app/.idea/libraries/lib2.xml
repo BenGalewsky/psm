@@ -87,6 +87,8 @@
       <root url="jar://$PROJECT_DIR$/cms-portal-services/lib/commons-codec-1.6.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/services/src/main/java" />
+    </SOURCES>
   </library>
 </component>

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import org.hibernate.type.LongType;
 /**
  * This implementation of the sequence generator interface uses the HIBERNATE {@link SequenceGeneratorBean} to minimize
  * database calls on sequence generation.
- * 
+ *
  * v1.1 - WAS Porting - upgraded to JPA 2
  * @author TCSASSEMBLER
  * @version 1.1
@@ -128,17 +128,5 @@ public class SequenceGeneratorBean implements SequenceGenerator {
         }
         Session sess = (Session) em.getDelegate();
         return ((Number) generator.generate((SessionImplementor) sess, null)).longValue();
-    }
-
-    /**
-     * Creates a unique 28 character string by combining a sequence and the system name.
-     *
-     * @param system the system name to prepend to the unique value
-     * @param sequenceName the name of the sequence
-     * @return the next value for the named sequence
-     */
-    public String getNextSystemValue(SystemId system, String sequenceName) {
-        return Util.pad(system.value(), SYSTEM_ID_LENGTH, 'X')
-            + Util.pad("" + getNextValue(sequenceName), SEQ_LENGTH, '0');
     }
 }

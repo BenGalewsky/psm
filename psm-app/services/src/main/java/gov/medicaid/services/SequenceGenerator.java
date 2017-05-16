@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -32,14 +32,4 @@ public interface SequenceGenerator {
      * @return the next value for the named sequence
      */
     long getNextValue(String sequenceName);
-
-    /**
-     * Creates a unique string by combining a sequence and the system name.
-     *
-     * @param system the system name to prepend to the unique value
-     * @param sequenceName the name of the sequence
-     * @return the next value for the named sequence
-     */
-    String getNextSystemValue(SystemId system, String sequenceName);
-
 }

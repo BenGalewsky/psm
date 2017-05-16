@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -100,9 +100,9 @@ import com.topcoder.util.log.Level;
 /**
  * This implementation of the persistence interface takes full control of mapping relationships in order to support
  * multiple request tickets and profile information on the same table.
- * 
+ *
  * v1.1 - WAS Porting - JPA 2 BLOB functionality updates (for WAS 8)
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.1
  */
@@ -148,7 +148,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This method is used to delete a ticket draft. Note that only tickets in draft status can be removed.
-     * 
+     *
      * @param user the user performing the operation
      * @param ticketId the ticket id to be removed
      * @throws PortalServiceException for any errors encountered
@@ -165,7 +165,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This is the service method to be called after the process has completed and resulted in a rejected change.
-     * 
+     *
      * @param user the user who rejected the request
      * @param ticketId the ticket id that was rejected
      * @param reason the reason for rejecting the request
@@ -187,7 +187,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * This is the service method to be called after the process has completed and resulted in an approved change, the
      * ticket is approved AS-IS (e.g. renewal) and there are no changes from the approver.
-     * 
+     *
      * @param user the user who approved the request
      * @param ticketId the ticket id that was approved
      * @throws PortalServiceException for any errors encountered
@@ -247,7 +247,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * This is the service method to be called after the process has completed and resulted in an approved change, but
      * the approver made some manual changes to the data so it has to be saved first.
-     * 
+     *
      * @param user the user who approved the request
      * @param ticket the ticket that will be approved (after saving it)
      * @throws PortalServiceException for any errors encountered
@@ -263,7 +263,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * This is the method to be called to stream the attachment contents to the given output stream directly from the
      * database.
-     * 
+     *
      * @param user the current user
      * @param attachmentId the attachment id to be streamed.
      * @param output the stream to write the contents to
@@ -302,11 +302,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * This method gets all the providers that meet the search criteria. If none available, the search result will be
      * empty.
-     * 
+     *
      * @param user the user performing the action
      * @param criteria - the search criteria
      * @return - the applicable providers
-     * 
+     *
      * @throws IllegalArgumentException if any argument is null, or the page size and page number settings are invalid
      * @throws PortalServiceException for any errors encountered
      */
@@ -362,7 +362,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Saves the given ticket as draft.
-     * 
+     *
      * @param user the user saving the ticket.
      * @param ticket the ticket to be saved
      * @return the ticket id for the draft created
@@ -395,7 +395,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the ticket details (full).
-     * 
+     *
      * @param user the user getting the ticket.
      * @param ticketId the ticket to get the details for
      * @return the complete ticket and provider profile
@@ -410,7 +410,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the provider details (full).
-     * 
+     *
      * @param user the user getting the provider.
      * @param profileId the profile id to get the details for
      * @return the complete provider profile
@@ -427,7 +427,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Gets the profile by id.
-     * 
+     *
      * @param profileId the profile id
      * @param fetchChildren true if the full object is needed
      * @return the profile with the given id
@@ -450,7 +450,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Search for provider by NPI.
-     * 
+     *
      * @param user the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
@@ -470,7 +470,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Search for practice.
-     * 
+     *
      * @param user the user performing the search
      * @param criteria the criteria filter
      * @return the matching practice results
@@ -532,7 +532,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Populates the contact names for the given list.
-     * 
+     *
      * @param resultList the list to be populated
      */
     @SuppressWarnings("unchecked")
@@ -562,7 +562,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Populates the contact names for the given list.
-     * 
+     *
      * @param resultList the list to be populated
      */
     @SuppressWarnings("unchecked")
@@ -597,7 +597,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This method gets all the providers owned by the given user. If none available, the search result will be empty.
-     * 
+     *
      * @param user the user performing the action
      * @return - the applicable providers
      * @throws PortalServiceException for any errors encountered
@@ -632,7 +632,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Creates a renewal ticket from the given profile id.
-     * 
+     *
      * @param user the user performing the action
      * @param profileId the profile to be renewed
      * @return the generated ticket
@@ -652,7 +652,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Creates an update ticket from the given profile id.
-     * 
+     *
      * @param user the user performing the action
      * @param profileId the profile to be edite
      * @return the generated ticket
@@ -669,7 +669,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Uploads an attachment to the database.
-     * 
+     *
      * @param user the user performing the action
      * @param attachment the attachment to be uploaded
      * @return the attachment id generated
@@ -677,7 +677,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long uploadAttachment(CMSUser user, Document attachment) throws PortalServiceException {
         if (attachment.getId() <= 0) {
-            attachment.setId(getSequence().getNextValue(Sequences.ATTACHMENT_SEQ));
             attachment.setCreatedOn(Calendar.getInstance().getTime());
             attachment.setCreatedBy(user.getUserId());
         }
@@ -693,7 +692,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Creates a note on a request, the note will remain on the request until it is approved.
-     * 
+     *
      * @param user the user performing the action
      * @param ticketId the request identifier
      * @param text the note text
@@ -708,7 +707,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Creates a note on a profile, the note will also be visible on all active requests.
-     * 
+     *
      * @param user the user performing the action
      * @param profileId the request identifier
      * @param text the note text
@@ -721,7 +720,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the ticket details (full).
-     * 
+     *
      * @param user the user getting the ticket.
      * @param processInstanceId the process instance id to get the details for
      * @return the complete ticket and provider profile
@@ -744,7 +743,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This is the service method to be called after the process has completed and resulted in a rejected change.
-     * 
+     *
      * @param user the user who rejected the request
      * @param profileId the profile to be suspended
      * @param reason the reason for rejecting the request
@@ -761,7 +760,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Used by data onboarding service to fully import a mapped profile.
-     * 
+     *
      * @param user the user performing the operation
      * @param sourceSystem the source of the imported profile
      * @param profile the profile to be created
@@ -770,7 +769,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long importProfile(CMSUser user, SystemId sourceSystem, ProviderProfile profile)
         throws PortalServiceException {
-        
+
         List<Document> attachments = profile.getAttachments();
         for (Document document : attachments) {
             saveContentsAndCloseStreams(document);
@@ -791,7 +790,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts the given attachment and its contents.
-     * 
+     *
      * @param attachment the attachment to create
      * @return the attachment id
      * @throws PortalServiceException for any errors encountered
@@ -806,7 +805,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * Saves the attachment content and closes the stream. The content id is then set to a reference to the content
      * saved.
-     * 
+     *
      * @param attachment the attachment to be saved
      * @throws PortalServiceException for any errors encountered
      */
@@ -834,7 +833,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Checks for the ticket entitlement.
-     * 
+     *
      * @param user the user performing the action
      * @param ticketId the ticket being processed
      * @throws PortalServiceException if the user does not own or cannot access the entity
@@ -864,7 +863,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Checks for the profile entitlement.
-     * 
+     *
      * @param user the user performing the action
      * @param profileId the profile being processed
      * @throws PortalServiceException if the user does not own or cannot access the entity
@@ -894,7 +893,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts a brand new copy of the given provider profile.
-     * 
+     *
      * @param ticketId the ticket to insert the details for
      * @param details the details to insert
      * @throws PortalServiceException for any errors encountered
@@ -903,7 +902,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         // persist parent
         details.setTicketId(ticketId);
 
-        details.setId(getSequence().getNextValue(Sequences.PROFILE_SEQ));
         getEm().persist(details);
 
         // save profile owner
@@ -946,7 +944,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (AssuredService service : services) {
             service.setTicketId(details.getTicketId());
             service.setProfileId(details.getProfileId());
-            service.setId(getSequence().getNextValue(Sequences.ASSURED_SERVICE_SEQ));
             getEm().persist(service);
         }
     }
@@ -960,7 +957,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (ProviderService service : services) {
             service.setTicketId(details.getTicketId());
             service.setProfileId(details.getProfileId());
-            service.setId(getSequence().getNextValue(Sequences.SERVICE_SEQ));
             getEm().persist(service);
         }
 
@@ -975,14 +971,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (PayToProvider payToProvider : payToProviders) {
             payToProvider.setProfileId(details.getProfileId());
             payToProvider.setTicketId(details.getTicketId());
-            payToProvider.setId(getSequence().getNextValue(Sequences.PAY_TO_SEQ));
             getEm().persist(payToProvider);
         }
     }
 
     /**
      * Saves ownership information.
-     * 
+     *
      * @param details the provider profile
      */
     private void insertOwnershipInfo(ProviderProfile details) {
@@ -994,7 +989,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         ownership.setProfileId(details.getProfileId());
         ownership.setTicketId(details.getTicketId());
 
-        ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
         // save owners
         insertBeneficialOwners(ownership);
 
@@ -1006,7 +1000,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Saves the ownership information assets.
-     * 
+     *
      * @param ownership the ownership information
      */
     private void insertAssets(OwnershipInformation ownership) {
@@ -1018,14 +1012,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (Asset asset : assets) {
             insertAddress(asset.getLocation());
 
-            asset.setId(getSequence().getNextValue(Sequences.ASSET_SEQ));
             getEm().persist(asset);
         }
     }
 
     /**
      * Saves the ownership information beneficial owners.
-     * 
+     *
      * @param ownership the ownership information
      */
     private void insertBeneficialOwners(OwnershipInformation ownership) {
@@ -1037,14 +1030,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (BeneficialOwner owner : owners) {
             insertAddress(owner.getAddress());
             insertAddress(owner.getOtherProviderAddress());
-            owner.setId(getSequence().getNextValue(Sequences.BEN_OWNER_SEQ));
             getEm().persist(owner);
         }
     }
 
     /**
      * Inserts the provider agreements.
-     * 
+     *
      * @param details the provider profile
      */
     private void insertAgreements(ProviderProfile details) {
@@ -1057,14 +1049,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             acceptedAgreements.setProfileId(details.getProfileId());
             acceptedAgreements.setTicketId(details.getTicketId());
 
-            acceptedAgreements.setId(getSequence().getNextValue(Sequences.AGREEMENT_SEQ));
             getEm().persist(acceptedAgreements);
         }
     }
 
     /**
      * Inserts the provider profile statement.
-     * 
+     *
      * @param details the provider profile
      * @param attachmentMapping the attachment id mapping
      * @throws PortalServiceException for any errors encountered
@@ -1086,13 +1077,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             statement.setSignatureAttachmentId(attachmentMapping.get(statement.getSignatureAttachmentId()));
         }
 
-        statement.setId(getSequence().getNextValue(Sequences.STATEMENT_ID));
         getEm().persist(statement);
     }
 
     /**
      * Inserts the provider affiliations.
-     * 
+     *
      * @param details the provider profile
      * @param attachmentMapping attachment id mapping
      * @throws PortalServiceException for any errors encountered
@@ -1127,7 +1117,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                             }
                             license.setAttachmentId(attachmentMapping.get(license.getAttachmentId()));
                         }
-                        license.setId(getSequence().getNextValue(Sequences.LICENSE_SEQ));
                         getEm().persist(license);
                     }
                 }
@@ -1135,14 +1124,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 affiliation.setTargetEntityId(0);
             }
 
-            affiliation.setId(getSequence().getNextValue(Sequences.PROV_GRP_SEQ));
             getEm().persist(affiliation);
         }
     }
 
     /**
      * Inserts the provider attachments.
-     * 
+     *
      * @param details the provider profile
      * @return the attachment id mapping
      * @throws PortalServiceException for any errors encountered
@@ -1162,9 +1150,9 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             if (attachment.getId() > 0) {
                 // regenerate attachment id when cloning, but keep reference so we can
                 // fix non-mapped references
-                long generated = getSequence().getNextValue(Sequences.ATTACHMENT_SEQ);
-                mapping.put(attachment.getId(), generated);
-                attachment.setId(generated);
+//                long generated = getSequence().getNextValue(Sequences.ATTACHMENT_SEQ);
+//                mapping.put(attachment.getId(), generated);
+//                attachment.setId(generated);
             }
             uploadAttachment(attachment);
         }
@@ -1174,7 +1162,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts the provider certifications.
-     * 
+     *
      * @param details the provider profile
      * @param attachmentMapping the attachment id mapping
      * @throws PortalServiceException for any errors encountered
@@ -1196,14 +1184,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                 }
                 license.setAttachmentId(attachmentMapping.get(license.getAttachmentId()));
             }
-            license.setId(getSequence().getNextValue(Sequences.LICENSE_SEQ));
             getEm().persist(license);
         }
     }
 
     /**
      * Inserts the provider header data.
-     * 
+     *
      * @param details the provider profile
      */
     private void insertProviderEntity(ProviderProfile details) {
@@ -1219,7 +1206,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts the provider contacts.
-     * 
+     *
      * @param details the provider profile
      */
     private void insertDesignatedContacts(ProviderProfile details) {
@@ -1235,14 +1222,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             Person person = designatedContact.getPerson();
             insertNonProviderEntity(person);
 
-            designatedContact.setId(getSequence().getNextValue(Sequences.DESIGNATED_CONTACT_SEQ));
             getEm().persist(designatedContact);
         }
     }
 
     /**
      * Inserts the given entity (non-provider type).
-     * 
+     *
      * @param entity the entity to be created
      */
     private void insertNonProviderEntity(Entity entity) {
@@ -1251,7 +1237,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts the given entity.
-     * 
+     *
      * @param profileId the profile id (0 if pending enrollment)
      * @param ticketId the ticket id (0 if not a provider)
      * @param entity the entity to be inserted
@@ -1273,13 +1259,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             insertAddress(org.getTen99Address());
         }
 
-        entity.setId(getSequence().getNextValue(Sequences.ENTITY_SEQ));
         getEm().persist(entity);
     }
 
     /**
      * Inserts the given contact information.
-     * 
+     *
      * @param contactInformation the information to be inserted
      */
     private void insertContactInformation(ContactInformation contactInformation) {
@@ -1288,13 +1273,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         }
         insertAddress(contactInformation.getAddress());
 
-        contactInformation.setId(getSequence().getNextValue(Sequences.CONTACT_INFO_SEQ));
         getEm().persist(contactInformation);
     }
 
     /**
      * Inserts the given address.
-     * 
+     *
      * @param address the address to be inserted
      */
     private void insertAddress(Address address) {
@@ -1302,13 +1286,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             return;
         }
 
-        address.setId(getSequence().getNextValue(Sequences.ADDRESS_SEQ));
         getEm().persist(address);
     }
 
     /**
      * Deletes the given profile from the database.
-     * 
+     *
      * @param profile the profile to be deleted
      */
     private void purge(ProviderProfile profile) {
@@ -1406,7 +1389,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Deletes the given entity from the database.
-     * 
+     *
      * @param entity the entity to be deleted.
      */
     private void purgeEntity(Entity entity) {
@@ -1428,7 +1411,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Deletes the given address from the database.
-     * 
+     *
      * @param address the address to delete
      */
     private void purgeAddress(Address address) {
@@ -1440,7 +1423,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Deletes the given contact information from the database.
-     * 
+     *
      * @param contactInformation the information to delete
      */
     private void purgeContactInformation(ContactInformation contactInformation) {
@@ -1453,7 +1436,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Removes the ticket details.
-     * 
+     *
      * @param user the user performing the operation.
      * @param ticketId the ticket that will be cleared
      * @throws PortalServiceException for any errors encountered
@@ -1467,7 +1450,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the provider details for the given ticket.
-     * 
+     *
      * @param ticketId the ticket to search for
      * @param fetchChildren if true, the entire object tree is retrieved
      * @return the ticket details
@@ -1492,7 +1475,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the complex children of the given profile.
-     * 
+     *
      * @param profile the profile to be populated
      */
     private void fetchChildren(ProviderProfile profile) {
@@ -1553,7 +1536,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related ownership information for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related ownership information to the profile
@@ -1568,7 +1551,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related ownership information for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related ownership information to the profile
@@ -1592,7 +1575,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related agreements for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related agreements to the profile
@@ -1608,7 +1591,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related notes for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related notes to the profile
@@ -1623,7 +1606,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related provider statement for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related statement to the profile
@@ -1643,7 +1626,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related affiliations for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related affiliations to the profile
@@ -1675,7 +1658,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related attachments for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related attachments to the profile
@@ -1690,7 +1673,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related certifications for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related certifications to the profile
@@ -1705,7 +1688,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related contacts for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related contacts to the profile
@@ -1721,7 +1704,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Retrieves the related entity for the given profile key.
-     * 
+     *
      * @param profileId the profile id of the provider
      * @param ticketId the request ticket id
      * @return the related entity to the profile
@@ -1740,7 +1723,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Appends the sorting criteria.
-     * 
+     *
      * @param fetchQuery the fetch query
      * @param criteria the criteria to append
      */
@@ -1753,7 +1736,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Saves the attachment blob contents.
-     * 
+     *
      * @param content the content to be saved
      * @return the content id
      * @throws IOException if the stream cannot be saved
@@ -1771,7 +1754,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Checks the sort column parameter for valid input.
-     * 
+     *
      * @param criteria the criteria used for search
      * @param maxColumns the maximum number allowed as sort column
      */
@@ -1789,7 +1772,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Appends the provider search criteria to the current buffer.
-     * 
+     *
      * @param buffer the query buffer
      * @param user the current user
      * @param criteria the search criteria
@@ -1852,7 +1835,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Binds the provider search criteria to the query.
-     * 
+     *
      * @param query the query to bind to
      * @param user the user performing the action
      * @param criteria the search criteria
@@ -1914,7 +1897,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Appends the provider search criteria to the current buffer.
-     * 
+     *
      * @param buffer the query buffer
      * @param user the current user
      * @param criteria the search criteria
@@ -1947,7 +1930,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Binds the provider search criteria to the query.
-     * 
+     *
      * @param query the query to bind to
      * @param user the user performing the action
      * @param criteria the search criteria
@@ -1976,7 +1959,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This copies all cos attached to the ticket into the profile.
-     * 
+     *
      * @param profileId the profile associated to the cos
      * @param ticketId the ticket associated
      * @throws PortalServiceException if any error occurs
@@ -1994,7 +1977,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * This copies all notes attached to the ticket into the profile.
-     * 
+     *
      * @param profileId the profile associated to the note
      * @param ticketId the ticket associated
      */
@@ -2012,7 +1995,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Inserts the given note.
-     * 
+     *
      * @param user the user creating the note
      * @param profileId the profile to attach it to
      * @param ticketId the ticket to attach it to
@@ -2025,13 +2008,12 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         n.setText(text);
         n.setCreatedBy(user.getUserId());
         n.setCreatedOn(Calendar.getInstance().getTime());
-        n.setId(getSequence().getNextValue(Sequences.NOTES_SEQ));
         getEm().persist(n);
     }
 
     /**
      * Creates or updates the given ticket.
-     * 
+     *
      * @param user the user performing the operation
      * @param ticket the ticket to be saved
      * @param insertDetails if true, also reinserts the details
@@ -2051,7 +2033,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Bypass the process workflow and automatically approve the given ticket.
-     * 
+     *
      * @param user the user performing the action
      * @param ticket the ticket to be approved
      * @throws PortalServiceException for any errors encountered
@@ -2091,7 +2073,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Checks the validity status of the ticket.
-     * 
+     *
      * @param ticketId the ticket id to check
      * @param profileId the profile to check
      * @return the validity status of the ticket
@@ -2145,7 +2127,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Performs direct update to the data during the approval process.
-     * 
+     *
      * @throws PortalServiceException
      */
     @Override
@@ -2165,7 +2147,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Renews the profiles directly, without making any data changes.
-     * 
+     *
      * @param user the current user
      * @param profileIds the profiles to renew
      */
@@ -2185,7 +2167,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Gets the COS associated with a profile.
-     * 
+     *
      * @param user CMS user
      * @param profileId profile id.
      * @return the list of services
@@ -2203,7 +2185,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Adds COS to the profile.
-     * 
+     *
      * @param user the user performing the action
      * @param categoryOfService the entity to persist
      * @param prevCatServiceId if last COS needs an update in end date this will be provided
@@ -2214,7 +2196,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkProfileEntitlement(user, categoryOfService.getProfileId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2227,11 +2208,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Deletes the COS.
-     * 
+     *
      * @param user the user performing the action
      * @param profileId the profile id
      * @param id the cos id
-     * 
+     *
      * @throws PortalServiceException for any errors encountered
      */
     @Override
@@ -2245,7 +2226,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Adds COS to the ticket.
-     * 
+     *
      * @param user the user performing the action
      * @param categoryOfService the entity to persist
      * @param prevCatServiceId if last COS needs an update in end date this will be provided
@@ -2256,7 +2237,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkTicketEntitlement(user, categoryOfService.getTicketId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2269,11 +2249,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Gets the COS associated with a ticket.
-     * 
+     *
      * @param user CMS user
      * @param ticketId ticket id.
      * @return the list of services
-     * 
+     *
      * @throws PortalServiceException for any errors encountered
      */
     @SuppressWarnings("unchecked")
@@ -2287,11 +2267,11 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Deletes the COS by ticket.
-     * 
+     *
      * @param user the user performing the action
      * @param ticketId the ticket id
      * @param id the cos id
-     * 
+     *
      * @throws PortalServiceException for any errors encountered
      */
     @Override
@@ -2305,7 +2285,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Returns true if the first parameter can be considered an employer of the second.
-     * 
+     *
      * @param externalUserId the employer to be checked
      * @param profileNPI the employee to be checked
      * @return true if there is an affiliation between the two arguments that gives the first access to the latter
@@ -2346,7 +2326,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Returns true if there is a profile found in the database with the given NPI
-     * 
+     *
      * @param profileNPI the NPI to be checked
      * @return true if a record matches
      * @throws PortalServiceException for any errors encountered
@@ -2370,7 +2350,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void sendSyncronizationRequest(long ticketId) {
         Session session = null;
         Connection connection = null;
-        
+
         try {
             connection = mqConnectionFactory.createConnection();
             session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
@@ -2394,7 +2374,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @param ticketId the ticket for the profile
      * @return the exported flat file
-     * @throws PortalServiceException for any errors encountered 
+     * @throws PortalServiceException for any errors encountered
      */
     private byte[] exportAsFlatFile(long ticketId) throws PortalServiceException {
         Enrollment ticket = getTicketDetails(getSystemUser(), ticketId);
@@ -2403,7 +2383,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
     /**
      * Callback from legacy system for setting the legacy ID.
-     * 
+     *
      * @param ticketId the ticket id
      * @param legacyId the legacy id
      * @throws PortalServiceException for any errors encountered
@@ -2421,7 +2401,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     /**
      * Purges any trace of a legacy record
      * @param legacyId the legacy id
-     * @throws PortalServiceException for any records found 
+     * @throws PortalServiceException for any records found
      */
     @SuppressWarnings("unchecked")
     public boolean purgeLegacyRecord(String legacyId) throws PortalServiceException {
@@ -2460,14 +2440,13 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             long profileId = entity.getProfileId();
             long ticketId = entity.getTicketId();
             OwnershipInformation ownershipInformation = findOwnershipInformation(profileId, ticketId);
-            
+
             if (ownershipInformation != null) {
                 ownershipInformation.getBeneficialOwners().addAll(ownership.getBeneficialOwners());
                 for (BeneficialOwner owner : ownershipInformation.getBeneficialOwners()) {
                     if (owner.getId() == 0) {
                         insertAddress(owner.getAddress());
                         insertAddress(owner.getOtherProviderAddress());
-                        owner.setId(getSequence().getNextValue(Sequences.BEN_OWNER_SEQ));
                         getEm().persist(owner);
                     }
                 }
@@ -2475,7 +2454,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
             } else {
                 ownership.setProfileId(profileId);
                 ownership.setTicketId(ticketId);
-                ownership.setId(getSequence().getNextValue(Sequences.OWNERSHIP_SEQ));
                 insertBeneficialOwners(ownership);
                 getEm().persist(ownership);
             }
