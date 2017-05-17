@@ -5,14 +5,15 @@ package gov.medicaid.entities;
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
 public class ProviderService extends IdentifiableEntity {
 
     private ServiceCategory category;
-    
+
     private long profileId;
-    
+
     private long ticketId;
-    
+
     public ProviderService() {
     }
 

@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-2013 TopCoder, Inc.
  *
- * This code was developed under U.S. government contract NNH10CD71C. 
+ * This code was developed under U.S. government contract NNH10CD71C.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * You may not use this file except in compliance with the License.
@@ -16,17 +16,17 @@
 package gov.medicaid.entities;
 
 import gov.medicaid.binders.BinderUtils;
-import gov.medicaid.domain.model.CategoriesOfServiceType;
 
 import java.util.Date;
 import java.util.List;
 
 /**
  * Represents the provider profile.
- * 
+ *
  * @author TCSASSEMBLER
  * @version 1.0
  */
+@javax.persistence.Entity
 public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
@@ -238,7 +238,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
      * The categories of service.
      */
     private List<ProviderCategoryOfService> categoriesOfServiceTypes;
-    
+
     /**
      * Empty constructor.
      */
@@ -247,7 +247,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>profileId</code>.
-     * 
+     *
      * @return the profileId
      */
     public long getProfileId() {
@@ -256,7 +256,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>profileId</code>.
-     * 
+     *
      * @param profileId
      *            the profileId to set
      */
@@ -266,7 +266,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>ticketId</code>.
-     * 
+     *
      * @return the ticketId
      */
     public long getTicketId() {
@@ -275,7 +275,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>ticketId</code>.
-     * 
+     *
      * @param ticketId
      *            the ticketId to set
      */
@@ -285,7 +285,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>referenceTicketId</code>.
-     * 
+     *
      * @return the referenceTicketId
      */
     public long getReferenceTicketId() {
@@ -294,7 +294,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>referenceTicketId</code>.
-     * 
+     *
      * @param referenceTicketId
      *            the referenceTicketId to set
      */
@@ -304,7 +304,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>affiliations</code>.
-     * 
+     *
      * @return the affiliations
      */
     public List<Affiliation> getAffiliations() {
@@ -313,7 +313,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>affiliations</code>.
-     * 
+     *
      * @param affiliations
      *            the affiliations to set
      */
@@ -323,7 +323,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>entity</code>.
-     * 
+     *
      * @return the entity
      */
     public Entity getEntity() {
@@ -332,7 +332,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>entity</code>.
-     * 
+     *
      * @param entity
      *            the entity to set
      */
@@ -342,7 +342,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>designatedContacts</code>.
-     * 
+     *
      * @return the designatedContacts
      */
     public List<DesignatedContact> getDesignatedContacts() {
@@ -351,7 +351,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>designatedContacts</code>.
-     * 
+     *
      * @param designatedContacts
      *            the designatedContacts to set
      */
@@ -361,7 +361,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>worksOnReservationInd</code>.
-     * 
+     *
      * @return the worksOnReservationInd
      */
     public String getWorksOnReservationInd() {
@@ -370,7 +370,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>worksOnReservationInd</code>.
-     * 
+     *
      * @param worksOnReservationInd
      *            the worksOnReservationInd to set
      */
@@ -380,7 +380,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>certifications</code>.
-     * 
+     *
      * @return the certifications
      */
     public List<License> getCertifications() {
@@ -389,7 +389,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>certifications</code>.
-     * 
+     *
      * @param certifications
      *            the certifications to set
      */
@@ -399,7 +399,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>attachments</code>.
-     * 
+     *
      * @return the attachments
      */
     public List<Document> getAttachments() {
@@ -408,7 +408,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>attachments</code>.
-     * 
+     *
      * @param attachments
      *            the attachments to set
      */
@@ -418,7 +418,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>createdBy</code>.
-     * 
+     *
      * @return the createdBy
      */
     public String getCreatedBy() {
@@ -427,7 +427,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>createdBy</code>.
-     * 
+     *
      * @param createdBy
      *            the createdBy to set
      */
@@ -437,7 +437,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>createdOn</code>.
-     * 
+     *
      * @return the createdOn
      */
     public Date getCreatedOn() {
@@ -446,7 +446,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>createdOn</code>.
-     * 
+     *
      * @param createdOn
      *            the createdOn to set
      */
@@ -456,7 +456,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>modifiedBy</code>.
-     * 
+     *
      * @return the modifiedBy
      */
     public String getModifiedBy() {
@@ -465,7 +465,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>modifiedBy</code>.
-     * 
+     *
      * @param modifiedBy
      *            the modifiedBy to set
      */
@@ -475,7 +475,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>modifiedOn</code>.
-     * 
+     *
      * @return the modifiedOn
      */
     public Date getModifiedOn() {
@@ -484,7 +484,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>modifiedOn</code>.
-     * 
+     *
      * @param modifiedOn
      *            the modifiedOn to set
      */
@@ -494,7 +494,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>maintainsOwnPrivatePractice</code>.
-     * 
+     *
      * @return the maintainsOwnPrivatePractice
      */
     public String getMaintainsOwnPrivatePractice() {
@@ -503,7 +503,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>maintainsOwnPrivatePractice</code>.
-     * 
+     *
      * @param maintainsOwnPrivatePractice
      *            the maintainsOwnPrivatePractice to set
      */
@@ -513,7 +513,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>employedOrContractedByGroup</code>.
-     * 
+     *
      * @return the employedOrContractedByGroup
      */
     public String getEmployedOrContractedByGroup() {
@@ -522,7 +522,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>employedOrContractedByGroup</code>.
-     * 
+     *
      * @param employedOrContractedByGroup
      *            the employedOrContractedByGroup to set
      */
@@ -532,7 +532,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>criminalConvictionInd</code>.
-     * 
+     *
      * @return the criminalConvictionInd
      */
     public String getCriminalConvictionInd() {
@@ -541,7 +541,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>criminalConvictionInd</code>.
-     * 
+     *
      * @param criminalConvictionInd
      *            the criminalConvictionInd to set
      */
@@ -551,7 +551,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>civilPenaltyInd</code>.
-     * 
+     *
      * @return the civilPenaltyInd
      */
     public String getCivilPenaltyInd() {
@@ -560,7 +560,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>civilPenaltyInd</code>.
-     * 
+     *
      * @param civilPenaltyInd
      *            the civilPenaltyInd to set
      */
@@ -570,7 +570,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>previousExclusionInd</code>.
-     * 
+     *
      * @return the previousExclusionInd
      */
     public String getPreviousExclusionInd() {
@@ -579,7 +579,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>previousExclusionInd</code>.
-     * 
+     *
      * @param previousExclusionInd
      *            the previousExclusionInd to set
      */
@@ -589,7 +589,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>agreements</code>.
-     * 
+     *
      * @return the agreements
      */
     public List<AcceptedAgreements> getAgreements() {
@@ -598,7 +598,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>agreements</code>.
-     * 
+     *
      * @param agreements
      *            the agreements to set
      */
@@ -608,7 +608,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>statement</code>.
-     * 
+     *
      * @return the statement
      */
     public ProviderStatement getStatement() {
@@ -617,7 +617,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>statement</code>.
-     * 
+     *
      * @param statement
      *            the statement to set
      */
@@ -627,7 +627,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>payToProviders</code>.
-     * 
+     *
      * @return the payToProviders
      */
     public List<PayToProvider> getPayToProviders() {
@@ -636,7 +636,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>payToProviders</code>.
-     * 
+     *
      * @param payToProviders
      *            the payToProviders to set
      */
@@ -646,7 +646,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>riskLevel</code>.
-     * 
+     *
      * @return the riskLevel
      */
     public RiskLevel getRiskLevel() {
@@ -655,7 +655,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>riskLevel</code>.
-     * 
+     *
      * @param riskLevel
      *            the riskLevel to set
      */
@@ -665,7 +665,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>notes</code>.
-     * 
+     *
      * @return the notes
      */
     public List<Note> getNotes() {
@@ -674,7 +674,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>notes</code>.
-     * 
+     *
      * @param notes
      *            the notes to set
      */
@@ -684,7 +684,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>effectiveDate</code>.
-     * 
+     *
      * @return the effectiveDate
      */
     public Date getEffectiveDate() {
@@ -693,7 +693,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>effectiveDate</code>.
-     * 
+     *
      * @param effectiveDate
      *            the effectiveDate to set
      */
@@ -703,7 +703,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>profileStatus</code>.
-     * 
+     *
      * @return the profileStatus
      */
     public ProfileStatus getProfileStatus() {
@@ -712,7 +712,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>profileStatus</code>.
-     * 
+     *
      * @param profileStatus
      *            the profileStatus to set
      */
@@ -722,7 +722,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Full clone of this object.
-     * 
+     *
      * @return a deep clone
      */
     public ProviderProfile clone() {
@@ -732,7 +732,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>adultInd</code>.
-     * 
+     *
      * @return the adultInd
      */
     public String getAdultInd() {
@@ -741,7 +741,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>adultInd</code>.
-     * 
+     *
      * @param adultInd
      *            the adultInd to set
      */
@@ -751,7 +751,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>employedSinceClearance</code>.
-     * 
+     *
      * @return the employedSinceClearance
      */
     public String getEmployedSinceClearance() {
@@ -760,7 +760,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>employedSinceClearance</code>.
-     * 
+     *
      * @param employedSinceClearance
      *            the employedSinceClearance to set
      */
@@ -770,7 +770,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>county</code>.
-     * 
+     *
      * @return the county
      */
     public String getCounty() {
@@ -779,7 +779,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>county</code>.
-     * 
+     *
      * @param county
      *            the county to set
      */
@@ -789,7 +789,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>ownershipInformation</code>.
-     * 
+     *
      * @return the ownershipInformation
      */
     public OwnershipInformation getOwnershipInformation() {
@@ -798,7 +798,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>ownershipInformation</code>.
-     * 
+     *
      * @param ownershipInformation
      *            the ownershipInformation to set
      */
@@ -808,7 +808,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>ownerId</code>.
-     * 
+     *
      * @return the ownerId
      */
     public String getOwnerId() {
@@ -817,7 +817,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>ownerId</code>.
-     * 
+     *
      * @param ownerId
      *            the ownerId to set
      */
@@ -827,7 +827,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>employeeCriminalConvictionInd</code>.
-     * 
+     *
      * @return the employeeCriminalConvictionInd
      */
     public String getEmployeeCriminalConvictionInd() {
@@ -836,7 +836,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>employeeCriminalConvictionInd</code>.
-     * 
+     *
      * @param employeeCriminalConvictionInd
      *            the employeeCriminalConvictionInd to set
      */
@@ -846,7 +846,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>employeeCivilPenaltyInd</code>.
-     * 
+     *
      * @return the employeeCivilPenaltyInd
      */
     public String getEmployeeCivilPenaltyInd() {
@@ -855,7 +855,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>employeeCivilPenaltyInd</code>.
-     * 
+     *
      * @param employeeCivilPenaltyInd
      *            the employeeCivilPenaltyInd to set
      */
@@ -865,7 +865,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>employeePreviousExclusionInd</code>.
-     * 
+     *
      * @return the employeePreviousExclusionInd
      */
     public String getEmployeePreviousExclusionInd() {
@@ -874,7 +874,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>employeePreviousExclusionInd</code>.
-     * 
+     *
      * @param employeePreviousExclusionInd
      *            the employeePreviousExclusionInd to set
      */
@@ -884,7 +884,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>numberOfBeds</code>.
-     * 
+     *
      * @return the numberOfBeds
      */
     public Integer getNumberOfBeds() {
@@ -893,7 +893,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>numberOfBeds</code>.
-     * 
+     *
      * @param numberOfBeds
      *            the numberOfBeds to set
      */
@@ -903,7 +903,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>numberOfBedsEffectiveDate</code>.
-     * 
+     *
      * @return the numberOfBedsEffectiveDate
      */
     public Date getNumberOfBedsEffectiveDate() {
@@ -912,7 +912,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>numberOfBedsEffectiveDate</code>.
-     * 
+     *
      * @param numberOfBedsEffectiveDate
      *            the numberOfBedsEffectiveDate to set
      */
@@ -922,7 +922,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>accomplishedBy</code>.
-     * 
+     *
      * @return the accomplishedBy
      */
     public String getAccomplishedBy() {
@@ -931,7 +931,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>accomplishedBy</code>.
-     * 
+     *
      * @param accomplishedBy
      *            the accomplishedBy to set
      */
@@ -941,7 +941,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>healthBoardInd</code>.
-     * 
+     *
      * @return the healthBoardInd
      */
     public String getHealthBoardInd() {
@@ -950,7 +950,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>healthBoardInd</code>.
-     * 
+     *
      * @param healthBoardInd
      *            the healthBoardInd to set
      */
@@ -960,7 +960,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>services</code>.
-     * 
+     *
      * @return the services
      */
     public List<ProviderService> getServices() {
@@ -969,7 +969,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>services</code>.
-     * 
+     *
      * @param services
      *            the services to set
      */
@@ -979,7 +979,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>title18NumberOfBeds</code>.
-     * 
+     *
      * @return the title18NumberOfBeds
      */
     public Integer getTitle18NumberOfBeds() {
@@ -988,7 +988,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>title18NumberOfBeds</code>.
-     * 
+     *
      * @param title18NumberOfBeds
      *            the title18NumberOfBeds to set
      */
@@ -998,7 +998,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>title19NumberOfBeds</code>.
-     * 
+     *
      * @return the title19NumberOfBeds
      */
     public Integer getTitle19NumberOfBeds() {
@@ -1007,7 +1007,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>title19NumberOfBeds</code>.
-     * 
+     *
      * @param title19NumberOfBeds
      *            the title19NumberOfBeds to set
      */
@@ -1017,7 +1017,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>dualCertifiedNumberOfBeds</code>.
-     * 
+     *
      * @return the dualCertifiedNumberOfBeds
      */
     public Integer getDualCertifiedNumberOfBeds() {
@@ -1026,7 +1026,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>dualCertifiedNumberOfBeds</code>.
-     * 
+     *
      * @param dualCertifiedNumberOfBeds
      *            the dualCertifiedNumberOfBeds to set
      */
@@ -1036,7 +1036,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>icfNumberOfBeds</code>.
-     * 
+     *
      * @return the icfNumberOfBeds
      */
     public Integer getIcfNumberOfBeds() {
@@ -1045,7 +1045,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>icfNumberOfBeds</code>.
-     * 
+     *
      * @param icfNumberOfBeds
      *            the icfNumberOfBeds to set
      */
@@ -1055,7 +1055,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the value of the field <code>physicalAndOccupationalTherapyInd</code>.
-     * 
+     *
      * @return the physicalAndOccupationalTherapyInd
      */
     public String getPhysicalAndOccupationalTherapyInd() {
@@ -1064,7 +1064,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the value of the field <code>physicalAndOccupationalTherapyInd</code>.
-     * 
+     *
      * @param physicalAndOccupationalTherapyInd
      *            the physicalAndOccupationalTherapyInd to set
      */
@@ -1074,7 +1074,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Gets the <code>assuredStatements</code>.
-     * 
+     *
      * @return the assuredStatements
      */
     public List<AssuredService> getAssuredStatements() {
@@ -1083,7 +1083,7 @@ public class ProviderProfile extends IdentifiableEntity implements Cloneable {
 
     /**
      * Sets the <code>assuredStatements</code>.
-     * 
+     *
      * @param assuredStatements
      *            the assuredStatements to set
      */

@@ -14,7 +14,6 @@
 	<class name="gov.medicaid.entities.Enrollment" table="TICKET">
 		<id name="ticketId" type="long">
 			<column name="TICKET_ID" />
-			<generator class="assigned" />
 		</id>
 		<many-to-one class="gov.medicaid.entities.EnrollmentStatus"
 			fetch="join" name="status">
@@ -70,7 +69,6 @@
 	<class name="gov.medicaid.entities.Address" table="ADDRESS">
 		<id name="id" type="long">
 			<column name="ADDRESS_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="attentionTo"
 			type="string">
@@ -98,7 +96,6 @@
 	<class abstract="true" name="gov.medicaid.entities.Entity" table="ENTITY">
 		<id name="id" type="long">
 			<column name="ENTITY_ID" />
-			<generator class="assigned" />
 		</id>
 		<discriminator force="false" insert="true" not-null="true">
 			<column length="1" name="PERSON_IND" />
@@ -261,7 +258,6 @@
 	<class name="gov.medicaid.entities.Affiliation" table="PROFILE_GRP_XREF">
 		<id name="id" type="long">
 			<column name="PROFILE_GRP_XREF_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="primaryInd"
 			not-null="true" type="string">
@@ -320,7 +316,6 @@
 	<class name="gov.medicaid.entities.PayToProvider" table="PROFILE_PAYTO_XREF">
 		<id name="id" type="long">
 			<column name="PROFILE_PAYTO_XREF_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="effectiveDate"
 			type="date">
@@ -359,7 +354,6 @@
 	<class name="gov.medicaid.entities.AssuredService" table="PROFILE_ASSURED_SVC_XREF">
 		<id name="id" type="long">
 			<column name="PROFILE_ASSURED_SVC_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="effectiveDate"
 			type="date">
@@ -391,7 +385,6 @@
 	<class name="gov.medicaid.entities.ContactInformation" table="CONTACT_INFO">
 		<id name="id" type="long">
 			<column name="CONTACT_INFO_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="phoneNumber"
 			type="string">
@@ -808,7 +801,6 @@
 	</class>
 	<class name="gov.medicaid.entities.License" table="LICENSE">
 		<id column="LICENSE_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -855,7 +847,6 @@
 	</class>
 	<class name="gov.medicaid.entities.BinaryContent" table="DOCUMENT_CONTENT">
 		<id column="CONTENT_ID" name="contentId" type="string">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="content" type="blob">
 			<column name="RAW_CONTENT" />
@@ -863,7 +854,6 @@
 	</class>
 	<class name="gov.medicaid.entities.Document" table="CMS_ATTACHMENT">
 		<id column="ATTACHMENT_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -888,7 +878,6 @@
 	</class>
 	<class name="gov.medicaid.entities.AgreementDocument" table="AGREEMENT_DOCUMENT">
 		<id column="AGREEMENT_DOCUMENT_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="DOC_TYPE" generated="never" lazy="false"
 			length="45" name="type" type="string" />
@@ -926,7 +915,6 @@
 	</class>
 	<class name="gov.medicaid.entities.ProviderStatement" table="PROVIDER_STATEMENT">
 		<id column="PROVIDER_STATEMENT_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -947,7 +935,6 @@
 	</class>
 	<class name="gov.medicaid.entities.Note" table="PROFILE_NOTES">
 		<id column="PROVIDER_NOTE_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -1011,7 +998,6 @@
 	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_ACCOUNT_LINK_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="userId" type="string">
 			<column name="USER_ID" />
@@ -1031,7 +1017,6 @@
 	<class name="gov.medicaid.entities.ExternalProfileLink" table="EXTERNAL_PROFILE_LINK">
 		<id name="id" type="long">
 			<column name="EXTERNAL_PROFILE_LINK_ID" />
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -1051,7 +1036,6 @@
 	</class>
 	<class name="gov.medicaid.entities.AuditRecord" table="AUDIT_RECORD">
 		<id column="AUDIT_RECORD_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="USERNAME" generated="never" lazy="false"
 			length="45" name="username" type="string" />
@@ -1068,7 +1052,6 @@
 	</class>
 	<class name="gov.medicaid.entities.AuditDetail" table="AUDIT_DETAIL">
 		<id column="AUDIT_DETAIL_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="AUDIT_RECORD_ID" generated="never" lazy="false"
 			name="auditRecordId" type="long" />
@@ -1084,7 +1067,6 @@
 	<class abstract="true" name="gov.medicaid.entities.BeneficialOwner"
 		table="BENEFICIAL_OWNER">
 		<id column="BENEFICIAL_OWNER_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<discriminator column="PERSON_IND" force="false" insert="true"
 			length="1" not-null="true" />
@@ -1168,7 +1150,6 @@
 	</subclass>
 	<class name="gov.medicaid.entities.OwnershipInformation" table="OWNERSHIP_INFO">
 		<id column="OWNERSHIP_INFO_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -1207,7 +1188,6 @@
 	</class>
 	<class name="gov.medicaid.entities.Asset" table="OWNER_ASSET">
 		<id column="OWNER_ASSET_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="type">
 			<column name="TYPE" />
@@ -1230,7 +1210,6 @@
 	</class>
 	<class name="gov.medicaid.entities.ProviderTypeSetting" table="PROVIDER_SETTING">
 		<id column="PROVIDER_SETTING_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="providerTypeCode"
 			type="string">
@@ -1251,7 +1230,6 @@
 	</class>
 	<class name="gov.medicaid.entities.ProviderService" table="PROVIDER_SVCS">
 		<id column="PROVIDER_SVCS_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -1268,7 +1246,6 @@
 	</class>
 	<class name="gov.medicaid.entities.ProviderCategoryOfService" table="PROVIDER_COS_XREF">
 		<id column="PROVIDER_COS_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" name="profileId"
 			type="long">
@@ -1293,7 +1270,6 @@
 	</class>
 	<class name="gov.medicaid.entities.Event" table="EVENT">
 		<id column="EVENT_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="NPI" generated="never" lazy="false" length="10"
 			name="npi" type="string" />
@@ -1332,7 +1308,6 @@
 	</class>
 	<class name="gov.medicaid.entities.ScreeningSchedule" table="SCREENING_SCHEDULE">
 		<id column="SCREENING_SCHEDULE_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="UPCOMING_SCREENING_DT" generated="never"
 			lazy="false" name="upcomingScreeningDate" type="timestamp" />
@@ -1350,7 +1325,6 @@
 	</class>
 	<class name="gov.medicaid.entities.HelpItem" table="HELP_ITEM">
 		<id column="HELP_ITEM_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property column="TITLE" generated="never" lazy="false"
 			length="45" name="title" type="string" />
@@ -1359,7 +1333,6 @@
 	</class>
 	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
 		<id column="LEGACY_MAPPING_ID" name="id" type="long">
-			<generator class="assigned" />
 		</id>
 		<property generated="never" lazy="false" length="200" name="systemName"
 			type="string">

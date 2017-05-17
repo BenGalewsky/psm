@@ -8,10 +8,11 @@ import java.util.List;
 
 /**
  * Represents the Assured Statements from Chemical Dependency Program providers.
- * 
+ *
  * @author cyberjag
  * @version 1.0
  */
+@javax.persistence.Entity
 public class AssuredService extends IdentifiableEntity {
 
     /**
@@ -38,10 +39,10 @@ public class AssuredService extends IdentifiableEntity {
      * Represents the selected service assurance statements.
      */
     private List<ServiceAssuranceExtType> extendedTypes;
-    
+
     /**
      * Represents the status.
-     * 
+     *
      * 1 - Initiate New, 2 - Continue Current, 3 - Terminate
      */
     private int status;
@@ -54,7 +55,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Gets the value of the field <code>profileId</code>.
-     * 
+     *
      * @return the profileId
      */
     public long getProfileId() {
@@ -63,7 +64,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Sets the value of the field <code>profileId</code>.
-     * 
+     *
      * @param profileId
      *            the profileId to set
      */
@@ -73,7 +74,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Gets the value of the field <code>ticketId</code>.
-     * 
+     *
      * @return the ticketId
      */
     public long getTicketId() {
@@ -82,7 +83,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Sets the value of the field <code>ticketId</code>.
-     * 
+     *
      * @param ticketId
      *            the ticketId to set
      */
@@ -92,7 +93,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Gets the value of the field <code>effectiveDate</code>.
-     * 
+     *
      * @return the effectiveDate
      */
     public Date getEffectiveDate() {
@@ -101,7 +102,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Sets the value of the field <code>effectiveDate</code>.
-     * 
+     *
      * @param effectiveDate
      *            the effectiveDate to set
      */
@@ -111,7 +112,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Gets the <code>type</code>.
-     * 
+     *
      * @return the type
      */
     public ServiceAssuranceType getType() {
@@ -120,7 +121,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Sets the <code>type</code>.
-     * 
+     *
      * @param type
      *            the type to set
      */
@@ -130,7 +131,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Gets the <code>extendedTypes</code>.
-     * 
+     *
      * @return the extendedTypes
      */
     public List<ServiceAssuranceExtType> getExtendedTypes() {
@@ -139,7 +140,7 @@ public class AssuredService extends IdentifiableEntity {
 
     /**
      * Sets the <code>extendedTypes</code>.
-     * 
+     *
      * @param extendedTypes
      *            the extendedTypes to set
      */
