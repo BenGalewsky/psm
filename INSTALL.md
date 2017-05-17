@@ -262,6 +262,7 @@ EOF
 
    ```ShellSession
    $ cd ../psm/psm-app
+   $ ant regenerate-model
    $ ant dist
    Buildfile: /path/to/psm/psm-app/build.xml
    ...[cut]...
