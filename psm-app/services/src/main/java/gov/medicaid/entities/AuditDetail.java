@@ -15,6 +15,14 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 /**
  * Audit record details.
  *
@@ -22,11 +30,19 @@ package gov.medicaid.entities;
  * @version 1.0
  */
 @javax.persistence.Entity
-public class AuditDetail extends IdentifiableEntity {
+@Table
+public class AuditDetail {
+
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.AUTO
+    )
+    private long id;
 
     /**
      * The header record id.
      */
+    @NotNull
     private long auditRecordId;
 
     /**
@@ -42,11 +58,13 @@ public class AuditDetail extends IdentifiableEntity {
     /**
      * The old value.
      */
+    @Column(name = "OLD_DATA")
     private String oldValue;
 
     /**
      * The new value.
      */
+    @Column(name = "NEW_DATA")
     private String newValue;
 
     /**
@@ -135,4 +153,11 @@ public class AuditDetail extends IdentifiableEntity {
         this.auditRecordId = auditRecordId;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
