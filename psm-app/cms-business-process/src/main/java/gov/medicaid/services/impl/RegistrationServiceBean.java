@@ -460,6 +460,9 @@ public class RegistrationServiceBean extends BaseService implements Registration
      * @return the generated user id string
      */
     private String createUser(String actor, SystemId system, CMSUser registrant) {
+        // ensure we get a generated ID
+        registrant.setUserId(null);
+
         // active by default
         registrant.setStatus(UserStatus.ACTIVE);
 
