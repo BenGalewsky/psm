@@ -15,6 +15,14 @@
  */
 package gov.medicaid.entities;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -24,16 +32,18 @@ import java.util.Date;
  * @version 1.0
  */
 @javax.persistence.Entity
-public class AgreementDocument extends IdentifiableEntity {
+@Table(name = "agreement_documents")
+public class AgreementDocument {
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.AUTO
+    )
+    @Column(name = "agreement_document_id")
+    private long id;
 
-    /**
-     * Document type.
-     */
+    @Column(name = "document_type")
     private String type;
 
-    /**
-     * Document title.
-     */
     private String title;
 
     /**
@@ -44,22 +54,21 @@ public class AgreementDocument extends IdentifiableEntity {
     /**
      * Document data.
      */
+    @Lob
+    @Column(name = "document_text")
     private String text;
 
-    /**
-     * Creator.
-     */
+    @ManyToOne(targetEntity = CMSUser.class)
+    @JoinColumn(
+            name = "created_by"
+    )
     private String createdBy;
 
     /**
      * Timestamp.
      */
+    @Column(name = "created_on")
     private Date createdOn;
-
-    /**
-     * If the agreement can be deleted.
-     */
-    private boolean canDelete;
 
     /**
      * Empty constructor.
@@ -175,22 +184,6 @@ public class AgreementDocument extends IdentifiableEntity {
         this.type = type;
     }
 
-    /**
-     * Gets the value of the field <code>canDelete</code>.
-     * @return the canDelete
-     */
-    public boolean isCanDelete() {
-        return canDelete;
-    }
-
-    /**
-     * Sets the value of the field <code>canDelete</code>.
-     * @param canDelete the canDelete to set
-     */
-    public void setCanDelete(boolean canDelete) {
-        this.canDelete = canDelete;
-    }
-
     @Override
     public boolean equals(Object obj) {
     	if (obj instanceof AgreementDocument) {
@@ -202,5 +195,13 @@ public class AgreementDocument extends IdentifiableEntity {
     @Override
     public int hashCode() {
     	return (int) this.getId();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
