@@ -1,4 +1,5 @@
 install: true
 
 script:
+  - cd psm-app
   - ./gradlew clean ear -i --continue
