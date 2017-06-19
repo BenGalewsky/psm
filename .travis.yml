@@ -2,6 +2,11 @@ language: java
 jdk:
   - oraclejdk8
 
+before_script:
+  - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
+  - cd ..
+  - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
+
 install: true
 
 script:
