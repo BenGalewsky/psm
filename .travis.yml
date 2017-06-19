@@ -6,7 +6,7 @@ before_script:
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
   - pushd ..
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
-  - pop
+  - popd
 
 install: true
 
