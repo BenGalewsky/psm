@@ -12,4 +12,6 @@ install: true
 
 script:
   - cd psm-app
+  - ls
+  - ls ../../../wildfly-10.1.0.Final
   - gradle build
