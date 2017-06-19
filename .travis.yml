@@ -1,9 +1,10 @@
 language: java
 jdk:
   - oraclejdk8
-  
+
 install: true
 
 script:
   - cd psm-app
-  - ./gradlew clean ear -i --continue
+  - ./gradlew build
+  
