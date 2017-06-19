@@ -5,7 +5,10 @@ jdk:
 before_script:
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
   - pushd ..
+  - ls /tmp
+  - pwd
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
+  - ls
   - popd
 
 install: true
