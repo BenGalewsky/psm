@@ -5,11 +5,8 @@ jdk:
 before_script:
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
   - pushd ..
-  - ls /tmp
   - pwd
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
-  - ls -lt
-  - ls -lt wildfly-10.1.0.Final
   - popd
 
 install: true
@@ -17,5 +14,4 @@ install: true
 script:
   - cd psm-app
   - ls
-  - ls ../../../wildfly-10.1.0.Final
   - gradle build
