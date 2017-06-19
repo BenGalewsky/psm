@@ -8,7 +8,8 @@ before_script:
   - ls /tmp
   - pwd
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
-  - ls
+  - ls -lt
+  - ls -lt wildfly-10.1.0.Final
   - popd
 
 install: true
