@@ -6,5 +6,4 @@ install: true
 
 script:
   - cd psm-app
-  - ./gradlew build
-  
+  - gradle build
