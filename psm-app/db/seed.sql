@@ -30,6 +30,7 @@ DROP TABLE IF EXISTS
   licenses,
   organizations,
   owner_assets,
+  ownership_info,
   ownership_types,
   pay_to_provider_types,
   people,
@@ -566,7 +567,7 @@ INSERT INTO license_types (code, description) VALUES
   ('L0', 'Marriage And Family Therapist'),
   ('L1', 'Audiologist License'),
   ('L2', 'Registration with the Department Of Health'),
-  ('L3', 'Optometrist License'),
+  ('L3', 'Optometrist'),
   ('L4', 'Registered Nurse'),
   ('L5', 'PCA Training Certificate'),
   ('L6', 'Traditional Midwife'),
@@ -1106,6 +1107,17 @@ CREATE TABLE affiliations(
   bgs_clearance_date DATE
 );
 
+CREATE TABLE ownership_info (
+  ownership_info_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  entity_structure_type_code CHARACTER VARYING(2)
+    REFERENCES entity_structure_types(code),
+  entity_structure_subtype_code CHARACTER VARYING(2)
+    REFERENCES entity_structure_types(code),
+  other_entity_type_desc TEXT
+);
+
 CREATE TABLE beneficial_owner (
   beneficial_owner_id       BIGINT PRIMARY KEY,
   person_ind                CHARACTER VARYING(1),
@@ -1129,7 +1141,8 @@ CREATE TABLE beneficial_owner (
   hired_at                  DATE,
   relationship_type_code    CHARACTER VARYING(2)
     REFERENCES relationship_types (code),
-  ownership_info_id         BIGINT,
+  ownership_info_id         BIGINT
+    REFERENCES ownership_info(ownership_info_id),
   fein                      CHARACTER VARYING(20),
   legal_name                TEXT
 );
@@ -1142,6 +1155,7 @@ CREATE TABLE owner_assets(
   address_id BIGINT
     REFERENCES addresses(address_id),
   ownership_info_id BIGINT
+    REFERENCES ownership_info(ownership_info_id)
 ) ;
 
 CREATE TABLE provider_statements(
@@ -1152,3 +1166,6 @@ CREATE TABLE provider_statements(
   title TEXT,
   "date" DATE
 );
+
+
+

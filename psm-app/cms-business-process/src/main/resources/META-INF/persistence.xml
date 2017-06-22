@@ -70,6 +70,7 @@
     <class>gov.medicaid.entities.LicenseType</class>
     <class>gov.medicaid.entities.Organization</class>
     <class>gov.medicaid.entities.OrganizationBeneficialOwner</class>
+    <class>gov.medicaid.entities.OwnershipInformation</class>
     <class>gov.medicaid.entities.OwnershipType</class>
     <class>gov.medicaid.entities.PayToProviderType</class>
     <class>gov.medicaid.entities.Person</class>
@@ -81,7 +82,6 @@
     <class>gov.medicaid.entities.QPType</class>
     <class>gov.medicaid.entities.RelationshipType</class>
     <class>gov.medicaid.entities.RequestType</class>
-    <class>gov.medicaid.entities.RequiredFieldType</class>
     <class>gov.medicaid.entities.RiskLevel</class>
     <class>gov.medicaid.entities.Role</class>
     <class>gov.medicaid.entities.ScreeningSchedule</class>
