@@ -5,12 +5,12 @@ dist: trusty
 
 cache:
   directories:
-    - $HOME/.m2
+    - $HOME/.gradle
 
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo
 before_script:
-  - ls -lat $HOME/.m2/
+  - ls -lat $HOME/.gradle
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
   - pushd ..
   - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
@@ -23,5 +23,4 @@ script:
   - ./gradlew build
 
 after_script:
-  - ls -lat $HOME/.m2/
-    
+  - ls -lat $HOME/.gradle
