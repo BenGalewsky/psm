@@ -3,6 +3,10 @@ jdk:
   - openjdk8
 dist: trusty
 
+cache:
+  directories:
+    - $HOME/.m2  
+
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo
 before_script:
