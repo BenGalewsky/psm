@@ -76,8 +76,3 @@ python -m smtpd -n -c DebuggingServer localhost:1025 &
 PYTHON_SMTPD_PID=$!
 
 curl -v "http://localhost:8080/cms"
-
-${WILDFLY_CLI} --connect --command="shutdown"
-kill ${PYTHON_SMTPD_PID}
-
-cat ${WILDFLY_LOG}
