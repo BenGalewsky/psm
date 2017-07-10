@@ -257,7 +257,7 @@ project(':integration-tests') {
     }
 
     test {
-      environment "DISPLAY", ":10"
+      environment "DISPLAY", ":99"
       systemProperty "webdriver.firefox.bin", "/home/travis/firefox-46.0.1/firefox/firefox"
     }
 }
