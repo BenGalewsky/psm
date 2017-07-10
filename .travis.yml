@@ -25,7 +25,7 @@ before_script:
   - tar -xf /tmp/wildfly-10.1.0.Final.tar.gz
   - popd
   - "export DISPLAY=:10"
-  - ls -lt /home/travis/firefox-46.0.1
+  - ls -lt /home/travis/firefox-46.0.1/firefox
   - "sh -e /etc/init.d/xvfb start"
 
 install: true
