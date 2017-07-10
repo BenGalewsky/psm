@@ -258,6 +258,6 @@ project(':integration-tests') {
 
     test {
       environment "DISPLAY", ":10"
-      systemProperty "webdriver.firefox.bin", "../../../firefox/firefox"
+      // systemProperty "webdriver.firefox.bin", "../../../firefox/firefox"
     }
 }
