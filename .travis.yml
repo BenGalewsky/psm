@@ -6,6 +6,7 @@ services:
   - postgresql
 addons:
   postgresql: "9.6"
+  firefox: "46.0.1"
 
 cache:
   directories:
@@ -22,6 +23,8 @@ before_script:
   - pushd ..
   - tar -xf /tmp/wildfly-10.1.0.Final.tar.gz
   - popd
+  - "export DISPLAY=:10"
+  - "sh -e /etc/init.d/xvfb start"
 
 install: true
 
@@ -29,3 +32,4 @@ script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
   - ../scripts/start-wildfly-deploy-application.sh
+  - ./gradlew --no-daemon --console=plain test aggregate
