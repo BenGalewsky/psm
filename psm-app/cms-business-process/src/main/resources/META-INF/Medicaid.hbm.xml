@@ -2,45 +2,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="gov.medicaid.entities.PayToProvider" table="PROFILE_PAYTO_XREF">
-		<id name="id" type="long">
-			<column name="PROFILE_PAYTO_XREF_ID" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="effectiveDate"
-			type="date">
-			<column name="EFF_DT" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.PayToProviderType"
-			name="type">
-			<column name="PAYTO_TYP_CD" />
-		</many-to-one>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="targetProfileId"
-			type="long">
-			<column name="TARGET_PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="name" type="string">
-			<column name="NAME" />
-		</property>
-		<property generated="never" lazy="false" name="contactName"
-			type="string">
-			<column name="CONTACT_NAME" />
-		</property>
-		<property generated="never" lazy="false" name="npi" type="string">
-			<column name="NPI" />
-		</property>
-		<property generated="never" lazy="false" name="phone" type="string">
-			<column name="PHONE_NUMBER" />
-		</property>
-	</class>
 	<class name="gov.medicaid.entities.AssuredService" table="PROFILE_ASSURED_SVC_XREF">
 		<id name="id" type="long">
 			<column name="PROFILE_ASSURED_SVC_ID" />
@@ -71,30 +32,6 @@
 		<property generated="never" lazy="false" name="status"
 			type="int">
 			<column name="STATUS" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.Note" table="PROFILE_NOTES">
-		<id column="PROVIDER_NOTE_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column name="TICKET_ID" />
-		</property>
-		<property generated="never" lazy="false" name="text" type="string">
-			<column name="NOTE_TXT" />
-		</property>
-		<property generated="never" lazy="false" name="createdBy"
-			type="string">
-			<column name="CREATED_BY" />
-		</property>
-		<property generated="never" lazy="false" name="createdOn"
-			type="date">
-			<column name="CREATE_TS" />
 		</property>
 	</class>
 	<class name="gov.medicaid.entities.ExternalAccountLink" table="EXTERNAL_ACCOUNT_LINK">
@@ -136,105 +73,6 @@
 		<property generated="never" lazy="false" name="externalProfileId"
 			type="string">
 			<column name="EXTERNAL_PROFILE_ID" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.ProviderTypeSetting" table="PROVIDER_SETTING">
-		<id column="PROVIDER_SETTING_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="providerTypeCode"
-			type="string">
-			<column name="PROVIDER_TYP_CD" />
-		</property>
-		<property generated="never" lazy="false" name="relationshipType"
-			type="string">
-			<column length="2" name="REL_TYP" />
-		</property>
-		<property generated="never" lazy="false" name="relatedEntityType"
-			type="string">
-			<column name="RELATED_ENTITY_TYP" />
-		</property>
-		<property generated="never" lazy="false" name="relatedEntityCode"
-			type="string">
-			<column name="RELATED_ENTITY_CD" />
-		</property>
-	</class>
-	<class name="gov.medicaid.entities.ProviderService" table="PROVIDER_SVCS">
-		<id column="PROVIDER_SVCS_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column default="0" name="PROFILE_ID" not-null="true" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column default="0" name="TICKET_ID" not-null="true" />
-		</property>
-		<many-to-one class="gov.medicaid.entities.ServiceCategory"
-			fetch="join" name="category">
-			<column name="SVC_CAT_CD" />
-		</many-to-one>
-	</class>
-	<class name="gov.medicaid.entities.ProviderCategoryOfService" table="PROVIDER_COS_XREF">
-		<id column="PROVIDER_COS_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="profileId"
-			type="long">
-			<column default="0" name="PROFILE_ID" />
-		</property>
-		<property generated="never" lazy="false" name="ticketId"
-			type="long">
-			<column default="0" name="TICKET_ID" />
-		</property>
-		<property generated="never" name="startDate" type="timestamp">
-			<column name="START_DT" not-null="true" />
-		</property>
-		<property generated="never" name="endDate" type="timestamp">
-			<column name="END_DT" />
-		</property>
-		<bag name="categories" table="PROVIDER_COS">
-			<key>
-				<column name="PROVIDER_COS_ID" not-null="true" />
-			</key>
-			<many-to-many class="gov.medicaid.entities.CategoryOfService" column="PROVIDER_COS_CD" unique="false" />
-		</bag>
-	</class>
-	<class name="gov.medicaid.entities.Event" table="EVENT">
-		<id column="EVENT_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property column="NPI" generated="never" lazy="false" length="10"
-			name="npi" type="string" />
-		<property column="TICKET_ID" generated="never" lazy="false"
-			name="ticketId" type="long" />
-		<property column="STATUS_CD" generated="never" lazy="false"
-			length="2" name="status" type="string" />
-		<property column="CREATED_BY" generated="never" lazy="false"
-			length="50" name="createdBy" type="string" />
-		<property column="CREATE_TS" generated="never" lazy="false"
-			name="createdOn" type="timestamp" />
-	</class>
-	<class name="gov.medicaid.entities.LegacySystemMapping" table="LEGACY_MAPPING">
-		<id column="LEGACY_MAPPING_ID" name="id" type="long">
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" length="200" name="systemName"
-			type="string">
-			<column name="SYSTEM_NM" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="codeType"
-			type="string">
-			<column name="CODE_TYPE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="internalCode"
-			type="string">
-			<column name="INTERNAL_CODE" />
-		</property>
-		<property generated="never" lazy="false" length="200" name="externalCode"
-			type="string">
-			<column name="EXTERNAL_CODE" />
 		</property>
 	</class>
 </hibernate-mapping>

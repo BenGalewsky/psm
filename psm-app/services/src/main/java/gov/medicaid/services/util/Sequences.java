@@ -23,16 +23,6 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for notes.
-     */
-    public static final String NOTES_SEQ = "NOTES_SEQ";
-
-    /**
-     * Used for each new provider enrollment.
-     */
-    public static final String PROVIDER_NUMBER_SEQ = "PROVIDER_NUMBER_SEQ";
-
-    /**
      * Used for each account link.
      */
     public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
@@ -41,20 +31,6 @@ public class Sequences {
      * External profile link.
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
-
-    /**
-     * For help items.
-     */
-    public static final String HELP_ITEM_SEQ = "HELP_ITEM_SEQ";
-
-    /**
-     * Event sequence.
-     */
-    public static final String EVENT_SEQ = "CMS_EVENT_SEQ";
-
-    public static final String PAY_TO_SEQ = "PAY_TO_SEQ";
-
-    public static final String SERVICE_SEQ = "SERVICE_SEQ";
 
     /**
      * For Assured Services.

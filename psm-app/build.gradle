@@ -8,8 +8,58 @@ buildscript {
     }
     dependencies {
         classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+        classpath('net.serenity-bdd:serenity-gradle-plugin:1.4.0')
     }
 }
+
+def jbpm_version = '5.4.0.Final'
+
+// These libraries are known to be used, since they are required during compile
+// or on immediate deployment
+ext.libs = [
+    commons_codec: 'commons-codec:commons-codec:1.6',
+    commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2',
+    commons_io: 'commons-io:commons-io:2.0.1',
+    commons_lang: 'commons-lang:commons-lang:2.4',
+    itext: 'com.lowagie:itext:2.1.7',
+    jasypt: 'org.jasypt:jasypt:1.9.0',
+    jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
+        exclude group: 'javax.transaction'
+        exclude group: 'org.apache.cxf'
+        exclude group: 'org.hibernate.javax.persistence'
+    },
+    jbpm_persistence_jpa: dependencies.create("org.jbpm:jbpm-persistence-jpa:${jbpm_version}") {
+       exclude group: 'javax.transaction'
+       exclude group: 'org.hibernate'
+       exclude group: 'org.hibernate.javax.persistence'
+    },
+    log4j: 'log4j:log4j:1.2.16',
+    spring_beans: 'org.springframework:spring-beans:3.0.5.RELEASE',
+    spring_context: 'org.springframework:spring-context:3.0.5.RELEASE',
+    spring_jdbc: 'org.springframework:spring-jdbc:3.0.5.RELEASE',
+    spring_ldap: 'org.springframework.ldap:spring-ldap-core:1.3.1.RELEASE',
+    spring_security_acl: 'org.springframework.security:spring-security-acl:3.0.5.RELEASE',
+    spring_security_aspects: 'org.springframework.security:spring-security-aspects:3.0.5.RELEASE',
+    spring_security_config: 'org.springframework.security:spring-security-config:3.0.5.RELEASE',
+    spring_security_ldap: 'org.springframework.security:spring-security-ldap:3.0.5.RELEASE',
+    spring_security_taglibs: 'org.springframework.security:spring-security-taglibs:3.0.5.RELEASE',
+    spring_webmvc: 'org.springframework:spring-webmvc:3.0.5.RELEASE',
+    velocity: 'org.apache.velocity:velocity:1.7',
+]
+
+// These libraries were included in the original project, but it is unclear if they
+// are required.  We know for sure that SOME of them are loaded during runtime, but
+// need to spend some time investigating one by one.
+List runtime_libs = [
+    'asm:asm:3.3',
+    'commons-logging:commons-logging:1.1.1',
+    'net.sourceforge.jexcelapi:jxl:2.6.10',
+    'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
+    'org.codehaus.janino:janino:2.5.15',
+    'org.slf4j:slf4j-api:1.6.4',
+    'org.slf4j:slf4j-log4j12:1.6.4',
+    'org.springframework:spring-asm:3.0.5.RELEASE',
+]
 
 allprojects {
     repositories {
@@ -21,11 +71,18 @@ project(':services') {
     apply plugin: 'java'
 
     dependencies {
-        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
+        compile libs.commons_codec
+        compile libs.commons_lang
+        compile libs.itext
+        compile libs.jasypt
+        compile libs.jbpm_human_task_core
+        compile libs.velocity
+        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile project(path: ':cms-business-model', configuration: 'archives')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+        runtime runtime_libs
     }
     sourceSets {
         main {
@@ -37,17 +94,26 @@ project(':services') {
             }
         }
     }
+    gradle.startParameter.continueOnFailure = true
 }
 
 project(':cms-business-process') {
     apply plugin: 'java'
+
     dependencies {
         compile project(path: ':services', configuration: 'archives')
         compile project(path: ':cms-business-model', configuration: 'archives')
-        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar', exclude: 'cms-core.jar')
+        compile libs.commons_codec
+        compile libs.commons_io
+        compile libs.commons_lang
+        compile libs.itext
+        compile libs.jbpm_human_task_core
+        compile libs.velocity
+        compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/hibernate')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/org/codehaus/jackson')
+        runtime libs.jbpm_persistence_jpa
     }
 
     sourceSets {
@@ -67,8 +133,25 @@ project(':cms-web') {
     dependencies {
         providedCompile project(':services')
         providedCompile fileTree(dir: 'WebContent/WEB-INF/lib')
+        compile libs.log4j
+        compile libs.spring_beans
+        compile libs.spring_ldap
+        compile libs.spring_security_acl
+        compile libs.spring_security_aspects
+        compile libs.spring_security_config
+        compile libs.spring_security_ldap
+        compile libs.spring_security_taglibs
+        compile libs.spring_webmvc
+        runtime runtime_libs
     }
     webAppDirName = 'WebContent'
+
+    task apiDocs(type: Javadoc) {
+      source = sourceSets.main.allJava
+      classpath += configurations.compile
+      destinationDir = reporting.file('api-docs')
+      options.optionFiles << file('javadoc.options')
+    }
 }
 
 project(':cms-business-model') {
@@ -106,6 +189,10 @@ project(':cms-business-model') {
             generatePackage = 'gov.medicaid.domain.model'
         }
     }
+    clean {
+        delete jaxb.xjc.destinationDir
+        delete "${rootDir}/schema/"
+    }
 }
 
 project(':cms-portal-services') {
@@ -114,8 +201,29 @@ project(':cms-portal-services') {
         deploy project(path: ':cms-web', configuration: 'archives')
         deploy project(':cms-business-process')
         earlib fileTree(dir: 'lib')
+        earlib libs.commons_codec
+        earlib libs.commons_fileupload
+        earlib libs.commons_io
+        earlib libs.commons_lang
+        earlib libs.itext
+        earlib libs.jasypt
+        earlib libs.jbpm_human_task_core
+        earlib libs.jbpm_persistence_jpa
+        earlib libs.log4j
+        earlib libs.spring_beans
+        earlib libs.spring_context
+        earlib libs.spring_jdbc
+        earlib libs.spring_ldap
+        earlib libs.spring_security_acl
+        earlib libs.spring_security_aspects
+        earlib libs.spring_security_config
+        earlib libs.spring_security_ldap
+        earlib libs.spring_security_taglibs
+        earlib libs.spring_webmvc
+        earlib libs.velocity
         earlib project(path: ':cms-business-model', configuration: 'archives')
         earlib project(path: ':services', configuration: 'archives')
+        earlib runtime_libs
    }
 
     ear {
@@ -123,4 +231,33 @@ project(':cms-portal-services') {
     }
 }
 
+project(':integration-tests') {
+    apply plugin: 'java'
+    apply plugin: 'net.serenity-bdd.aggregator'
 
+    dependencies {
+        testCompile 'com.googlecode.lambdaj:lambdaj:2.3.3'
+        testCompile 'net.serenity-bdd:serenity-core:1.4.0'
+        testCompile 'net.serenity-bdd:serenity-junit:1.4.0'
+        testCompile 'net.serenity-bdd:serenity-cucumber:1.1.36'
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.assertj:assertj-core:3.8.0'
+        testCompile 'org.slf4j:slf4j-simple:1.7.7'
+    }
+
+        sourceSets {
+        test {
+            java {
+                srcDirs = ['src/test/java']
+            }
+            resources {
+                srcDirs = ['src/test/resources']
+            }
+        }
+    }
+
+    test {
+      environment "DISPLAY", ":10"
+      systemProperty "webdriver.firefox.bin", "../../../firefox/firefox"
+    }
+}

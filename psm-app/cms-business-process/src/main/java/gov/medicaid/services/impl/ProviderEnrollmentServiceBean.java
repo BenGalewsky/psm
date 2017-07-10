@@ -54,13 +54,24 @@ import gov.medicaid.entities.SystemId;
 import gov.medicaid.entities.UserRequest;
 import gov.medicaid.entities.Validity;
 import gov.medicaid.entities.dto.ViewStatics;
-import gov.medicaid.process.enrollment.sync.FlatFileExporter;
 import gov.medicaid.services.PortalServiceException;
-import gov.medicaid.services.PortalServiceRuntimeException;
 import gov.medicaid.services.ProviderEnrollmentService;
 import gov.medicaid.services.util.Sequences;
 import gov.medicaid.services.util.Util;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.NotImplementedException;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityGraph;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -73,28 +84,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Resource;
-import javax.ejb.Local;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.jms.BytesMessage;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.MessageProducer;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.persistence.Query;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-
-import org.apache.commons.io.IOUtils;
-
-import com.topcoder.util.log.Level;
 
 /**
  * This implementation of the persistence interface takes full control of mapping relationships in order to support
@@ -110,19 +99,6 @@ import com.topcoder.util.log.Level;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ProviderEnrollmentServiceBean extends BaseService implements ProviderEnrollmentService {
-
-    /**
-     * Synchronization connection factory.
-     */
-    @Resource
-    private ConnectionFactory mqConnectionFactory;
-
-    /**
-     * Synchronization queue.
-     */
-    @Resource
-    private Queue dataSyncQueue;
-
     /**
      * Number of columns in the practice lookup results.
      */
@@ -211,14 +187,19 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
 
         if (ticket.getRequestType().getDescription().equals(ViewStatics.ENROLLMENT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
-            profile.setProfileId(getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ));
             profile.setOwnerId(ticket.getSubmittedBy());
             profile.setCreatedBy(ticket.getSubmittedBy());
             profile.setCreatedOn(ticket.getStatusDate());
 
             profile.getEntity().setEnrolled("Y");
-            // generate profile id
-            insertProfile(0, profile);
+
+            profile.setId(0);
+            profile.setTicketId(0);
+            getEm().persist(profile);
+
+            profile.setProfileId(profile.getId());
+
+            saveRelatedEntities(profile);
         } else if (ticket.getRequestType().getDescription().equals(ViewStatics.IMPORT_REQUEST)) {
             profile.setProfileStatus(findLookupByDescription(ProfileStatus.class, "Active"));
             profile.setOwnerId(ticket.getSubmittedBy());
@@ -767,23 +748,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      */
     public long importProfile(CMSUser user, SystemId sourceSystem, ProviderProfile profile)
         throws PortalServiceException {
-
-        List<Document> attachments = profile.getAttachments();
-        for (Document document : attachments) {
-            saveContentsAndCloseStreams(document);
-        }
-
-        ProviderProfile clone = profile.clone();
-        clone.getEntity().setLegacyIndicator("Y");
-
-        long internalProfileId = getSequence().getNextValue(Sequences.PROVIDER_NUMBER_SEQ);
-        Enrollment ticket = new Enrollment();
-        ticket.setRequestType(findLookupByDescription(RequestType.class, ViewStatics.IMPORT_REQUEST));
-
-        clone.setProfileId(internalProfileId);
-        ticket.setDetails(clone);
-        bypassJBPM(user, ticket);
-        return internalProfileId;
+        throw new NotImplementedException();
     }
 
     /**
@@ -903,6 +868,10 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         details.setId(0);
         getEm().persist(details);
 
+        saveRelatedEntities(details);
+    }
+
+    private void saveRelatedEntities(ProviderProfile details) throws PortalServiceException {
         // save profile owner
         insertProviderEntity(details);
 
@@ -957,7 +926,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (ProviderService service : services) {
             service.setTicketId(details.getTicketId());
             service.setProfileId(details.getProfileId());
-            service.setId(getSequence().getNextValue(Sequences.SERVICE_SEQ));
+            service.setId(0);
             getEm().persist(service);
         }
 
@@ -972,7 +941,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (PayToProvider payToProvider : payToProviders) {
             payToProvider.setProfileId(details.getProfileId());
             payToProvider.setTicketId(details.getTicketId());
-            payToProvider.setId(getSequence().getNextValue(Sequences.PAY_TO_SEQ));
+            payToProvider.setId(0);
             getEm().persist(payToProvider);
         }
     }
@@ -2015,7 +1984,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         n.setText(text);
         n.setCreatedBy(user.getUserId());
         n.setCreatedOn(Calendar.getInstance().getTime());
-        n.setId(getSequence().getNextValue(Sequences.NOTES_SEQ));
+        n.setId(0);
         getEm().persist(n);
     }
 
@@ -2182,14 +2151,29 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      * @return the list of services
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public List<ProviderCategoryOfService> getProviderCategoryOfServices(CMSUser user, long profileId)
-        throws PortalServiceException {
+    public List<ProviderCategoryOfService> getProviderCategoryOfServices(
+            CMSUser user,
+            long profileId
+    ) throws PortalServiceException {
         checkProfileEntitlement(user, profileId);
-        return getEm().createQuery("from ProviderCategoryOfService p where p.profileId = :id order by p.startDate")
-            .setParameter("id", profileId).getResultList();
+        return queryCategoriesOfService("p.profileId = :id")
+                .setParameter("id", profileId)
+                .getResultList();
+    }
 
+    private TypedQuery<ProviderCategoryOfService> queryCategoriesOfService(
+            String condition
+    ) {
+        EntityGraph graph = getEm()
+                .getEntityGraph("ProviderCategoryOfService with categories");
+        return getEm()
+                .createQuery("SELECT DISTINCT p " +
+                                "FROM ProviderCategoryOfService p " +
+                                "WHERE " + condition + " " +
+                                "ORDER BY p.startDate",
+                        ProviderCategoryOfService.class)
+                .setHint("javax.persistence.loadgraph", graph);
     }
 
     /**
@@ -2205,7 +2189,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToProfile(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkProfileEntitlement(user, categoryOfService.getProfileId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2247,7 +2231,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
     public void addCOSToTicket(CMSUser user, ProviderCategoryOfService categoryOfService, long prevCatServiceId,
         Date prevCatEndDate) throws PortalServiceException {
         checkTicketEntitlement(user, categoryOfService.getTicketId());
-        categoryOfService.setId(getSequence().getNextValue(Sequences.PROVIDER_COS_SEQ));
+        categoryOfService.setId(0);
         getEm().persist(categoryOfService);
         if (prevCatServiceId != 0) {
             ProviderCategoryOfService service = getEm().find(ProviderCategoryOfService.class, prevCatServiceId);
@@ -2267,13 +2251,15 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
      *
      * @throws PortalServiceException for any errors encountered
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public List<ProviderCategoryOfService> getPendingCategoryOfServices(CMSUser user, long ticketId)
-        throws PortalServiceException {
+    public List<ProviderCategoryOfService> getPendingCategoryOfServices(
+            CMSUser user,
+            long ticketId
+    ) throws PortalServiceException {
         checkTicketEntitlement(user, ticketId);
-        return getEm().createQuery("from ProviderCategoryOfService p where ticketId = :id order by p.startDate")
-            .setParameter("id", ticketId).getResultList();
+        return queryCategoriesOfService("ticketId = :id")
+                .setParameter("id", ticketId)
+                .getResultList();
     }
 
     /**
@@ -2351,45 +2337,6 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         Query items = getEm().createQuery(fetchQuery.toString());
         items.setParameter("npi", profileNPI);
         return !items.getResultList().isEmpty();
-    }
-
-    /**
-     * Sends the given provider for export to the message queue.
-     * @param ticketId the ticket id
-     */
-    @Override
-    public void sendSyncronizationRequest(long ticketId) {
-        Session session = null;
-        Connection connection = null;
-
-        try {
-            connection = mqConnectionFactory.createConnection();
-            session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
-            MessageProducer sender = session.createProducer(dataSyncQueue);
-            BytesMessage message = session.createBytesMessage();
-            byte[] content = exportAsFlatFile(ticketId);
-            getLog().log(Level.INFO, "Sending data sync request:" + new String(content));
-            message.writeBytes(content);
-            sender.send(message);
-        } catch (PortalServiceException e) {
-            getLog().log(Level.ERROR, e);
-            throw new PortalServiceRuntimeException("While attempting to synchronize data", e);
-        } catch (JMSException e) {
-            getLog().log(Level.ERROR, e);
-            throw new PortalServiceRuntimeException("While attempting to synchronize data", e);
-        }
-    }
-
-    /**
-     * Converts the profile represented by the given ticket to a flat file.
-     *
-     * @param ticketId the ticket for the profile
-     * @return the exported flat file
-     * @throws PortalServiceException for any errors encountered
-     */
-    private byte[] exportAsFlatFile(long ticketId) throws PortalServiceException {
-        Enrollment ticket = getTicketDetails(getSystemUser(), ticketId);
-        return new FlatFileExporter().exportProviderFile(ticket);
     }
 
     /**
