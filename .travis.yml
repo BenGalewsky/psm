@@ -10,8 +10,8 @@ addons:
   artifacts:
     paths:
      - ../wildfly-10.1.0.Final/standalone/log/server.log
-     - psm-app/integration_tests/build
-     - psm-app/integration_tests/target
+     - psm-app/integration-tests/build/reports
+     - psm-app/integration-tests/target
 
 
 cache:
