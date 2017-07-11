@@ -9,7 +9,7 @@ addons:
   firefox: "46.0.1"
   artifacts: true
     paths:
-    - ../wildfly-10.1.0.Final/standalone/log/server.log
+     - ../wildfly-10.1.0.Final/standalone/log/server.log
 
 
 cache:
