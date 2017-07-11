@@ -6,18 +6,31 @@ services:
   - postgresql
 addons:
   postgresql: "9.6"
+  firefox: "46.0.1"
+  # artifacts:
+  #   paths:
+  #    - ../wildfly-10.1.0.Final/standalone/log/server.log
+  #    - psm-app/integration-tests/build/reports
+  #    - psm-app/integration-tests/target
+
 
 cache:
   directories:
     - $HOME/.gradle/
+
+cache:
+  directories:
+    - $HOME/.gradle/caches
 
 # We depend on a wildfly deploment for some of the production
 # jar files. Download it and install just above our repo
 before_script:
   - wget http://download.jboss.org/wildfly/10.1.0.Final/wildfly-10.1.0.Final.tar.gz -O /tmp/wildfly-10.1.0.Final.tar.gz
   - pushd ..
-  - tar -xvf /tmp/wildfly-10.1.0.Final.tar.gz
+  - tar -xf /tmp/wildfly-10.1.0.Final.tar.gz
   - popd
+  # Start the virtual X windows server for Firefox to interact with
+  - "sh -e /etc/init.d/xvfb start"
 
 install: true
 
@@ -26,10 +39,10 @@ script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
   - ../scripts/start-wildfly-deploy-application.sh
+  - ./gradlew --no-daemon --console=plain test aggregate
   - ./gradlew --no-daemon --console=plain clean build cms-web:apiDocs
 
 
 # Push the new Javadocs to our GitHub Pages site.
 after_success:
   - ../scripts/push-javadoc-to-gh-pages.sh
-  
