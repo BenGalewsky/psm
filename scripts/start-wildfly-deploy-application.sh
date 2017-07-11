@@ -21,6 +21,10 @@ function wait_for_wildfly {
 }
 
 createdb -U postgres psm
+psql -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/legacy_seed.sql
+psql -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/seed.sql
+psql -U postgres -w -f ${TRAVIS_BUILD_DIR}/psm-app/db/jbpm.sql
+
 
 ${WILDFLY_HOME}/bin/standalone.sh -c standalone-full.xml > ${WILDFLY_LOG} &
 
