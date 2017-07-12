@@ -23,16 +23,9 @@ package gov.medicaid.services.util;
  */
 public class Sequences {
     /**
-     * Used for each account link.
-     */
-    public static final String ACOUNT_LINK_SEQ = "ACOUNT_LINK_SEQ";
-
-    /**
      * External profile link.
      */
     public static final String EXT_PROF_LINK_SEQ = "EXT_PROF_LINK_SEQ";
-
-    public static final String PROVIDER_COS_SEQ = "PROVIDER_COS_SEQ";
 
     /**
      * Private constructor.
