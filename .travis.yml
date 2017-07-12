@@ -39,4 +39,5 @@ script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
   - ../scripts/start-wildfly-deploy-application.sh
-  - ./gradlew --no-daemon --console=plain test aggregate
+  - ./gradlew --no-daemon --console=plain --info test aggregate cms-web:apiDocs
+  
