@@ -30,6 +30,7 @@ ${WILDFLY_HOME}/bin/standalone.sh -c standalone-full.xml > ${WILDFLY_LOG} &
 
 download_and_sha1 "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar" \
                   8a0b76d763f5382d6357c412eeb14970ba4405f3
+ls
 
 wait_for_wildfly ${WILDFLY_CLI}
 
