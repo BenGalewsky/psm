@@ -94,7 +94,6 @@ project(':services') {
             }
         }
     }
-    gradle.startParameter.continueOnFailure = true
 }
 
 project(':cms-business-process') {
@@ -256,6 +255,6 @@ project(':integration-tests') {
 
     test {
       environment "DISPLAY", ":99"
-      systemProperty "webdriver.firefox.bin", "/home/travis/firefox-46.0.1/firefox/firefox"
+      systemProperty "webdriver.firefox.bin", System.getenv('FIREFOX_HOME')
     }
 }

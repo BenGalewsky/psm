@@ -13,6 +13,8 @@ addons:
      - psm-app/integration-tests/build/reports
      - psm-app/integration-tests/target
 
+env:
+  - FIREFOX_HOME=/home/travis/firefox-46.0.1/firefox/firefox
 
 cache:
   directories:
@@ -39,5 +41,4 @@ script:
   - cd psm-app
   - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
   - ../scripts/start-wildfly-deploy-application.sh
-  - ./gradlew --no-daemon --console=plain --info test aggregate cms-web:apiDocs
-  
+  - ./gradlew --no-daemon --console=plain --info test aggregate
