@@ -15,6 +15,7 @@ addons:
 
 env:
   - FIREFOX_HOME=/home/travis/firefox-46.0.1/firefox/firefox
+  - XVFB_DISPLAY=:99
 
 cache:
   directories:
