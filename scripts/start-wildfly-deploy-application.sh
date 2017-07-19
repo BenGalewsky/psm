@@ -15,7 +15,7 @@ function download_and_sha1 {
 
 function wait_for_wildfly {
   until `$1 -c "ls /deployment" &> /dev/null`; do
-    sleep 10
+    sleep 15
     echo "Waiting for wildfly to come up."
   done
 }
