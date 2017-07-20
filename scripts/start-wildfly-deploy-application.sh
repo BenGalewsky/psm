@@ -14,10 +14,7 @@ function download_and_sha1 {
 }
 
 function wait_for_wildfly {
-  until `$1 -c "ls /deployment" &> /dev/null`; do
-    sleep 15
-    echo "Waiting for wildfly to come up."
-  done
+  ( tail -f -n0 ${WILDFLY_LOG} & ) | grep -q "WFLYSRV0025"
 }
 
 createdb -U postgres psm
