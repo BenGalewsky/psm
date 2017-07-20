@@ -5,10 +5,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gov.medicaid.features.general.ui.LoginPage;
 
-// There are properties set by the serenity framework as the tests
-// are being set up
-@SuppressWarnings("unused")
 public class LoginStepDefinitions {
+    // This property is set by serenity at test time.
+    @SuppressWarnings("unused")
     private LoginPage loginPage;
 
     @Given("^I have the application open in my browser$")
