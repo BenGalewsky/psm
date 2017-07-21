@@ -15,6 +15,8 @@ function download_and_sha1 {
 
 function wait_for_wildfly {
   ( tail -f -n0 ${WILDFLY_LOG} & ) | grep -q "WFLYSRV0025"
+  tail ${WILDFLY_LOG}
+  sleep 20
 }
 
 createdb -U postgres psm
